@@ -1,0 +1,261 @@
+//OS DEJO EL CODIGO DE MI ARCHIVO INDEX.JS EN ESTE ARCHIVO TXT
+
+
+
+var express = require('express');
+var app = express();
+
+app.set('port', (process.env.PORT || 5000));
+
+var bodyParser = require("body-parser");  //objeto que viene de una libreria que nos ayuda a poder estar codificando parametros que vengan en url o metodos POST
+app.use(bodyParser.json());     //soporte para codificar json
+app.use(bodyParser.urlencoded({ extended: true }));  //habilita soporte para decodificar url
+
+var firebase = require("firebase");    //Conexion con nuestra DB firebase. Antes se ha descargado la libreria firebase y un archivo que lo he introducido en la raiz del proyecto
+firebase.initializeApp({               //inicializamos el sdk
+  serviceAccount: "Mascotas-1c9582dc2a3a.json",       //es el nombre del archivo descargado, y no le he puesto "path/" porq el archivo esta en la raiz
+  databaseURL: "https://mascotas-589b9.firebaseio.com" //url de la base de datos (Sin "/" al final)
+});    //ya esta configurada nuestra DB
+
+var FCM = require('fcm-push');
+
+app.use(express.static(__dirname + '/public'));
+
+// views is directory for all template files
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
+app.get('/android', function(request, response) {
+  response.render('pages/index');
+});
+
+
+
+/*
+//////////////////////////////////////////////////////////////////////////////////
+//POST      (hay q enviar un token y se guare a la DB)
+//https://damp-wildwood-91392.herokuapp.com/token-device
+//token
+//en request (solicitud) estare obteniendo los parametros que vengan en la url atraves del metodo indicado
+app.post("/token-device", function(request, response){     //recibir un token-device y ese token-device lo devolvamos como respuesta
+	var token = request.body.token;
+	
+	var db = firebase.database();   //traemos la Db a la variable db
+	var tokenDevices = db.ref("token-device").push();  //obtenemod la referencia de la base de datos. se empiezan a crear las claves apartir de "token-device" .el push es para que vaya creando nuevos datos (id ) y no sobreescribiendo
+	tokenDevices.set({                               //definimos la estructura de la data que queremos insertar en este path
+		token: token
+	});
+	
+	response.send(request.body.token);    //podriaser request.body.nombreUsuario ..... request.body.correoElectronico .....
+});
+//////////////////////////////////////////////////////////////////////////////////
+*/
+
+//////////////////////////////////////////////////////////////////////////////////
+//POST      (hay q enviar un token (id_dispositivo), el nombre del usuario en instagram (nombre_usuario_instagram) y id usuario (id_usuario_instagram), y se guare a la DB)
+//https://damp-wildwood-91392.herokuapp.com/registrar-usuario
+//id_dispositivo
+//nombre_usuario_instagram
+//id_usuario_instagram
+//en request (solicitud) estare obteniendo los parametros que vengan en la url atraves del metodo indicado
+app.post("/registrar-usuario", function(request, response){     //recibir un token-device y ese token-device lo devolvamos como respuesta
+	var id_dispositivo = request.body.id_dispositivo;
+	var nombre_usuario_instagram = request.body.nombre_usuario_instagram;
+	var id_usuario_instagram = request.body.id_usuario_instagram;
+	
+	var db = firebase.database();   //traemos la Db a la variable db
+	var tokenDevices = db.ref("registrar-usuario").push();  //obtenemod la referencia de la base de datos. se empiezan a crear las claves apartir de "registrar-usuario" .el push es para que vaya creando nuevos datos (id ) y no sobreescribiendo
+	tokenDevices.set({                               //definimos la estructura de la data que queremos insertar en este path
+		id_dispositivo: id_dispositivo,              //asi se verá en la db
+		nombre_usuario_instagram: nombre_usuario_instagram,
+		id_usuario_instagram: id_usuario_instagram
+	});
+	
+	var path = tokenDevices.toString(); //te guarda la direccion del servidor, concatenando el identificador que le ha puesto al registro(https://mascotas-589b9.firebaseio.com/registrar-usuario/-KZXOT_4qbMWRWoNXWbK)
+	var pathSplit = path.split("registrar-usuario/");
+	var idAutogenerado = pathSplit[1];
+	
+	/////////////////////////
+	/////////////////////////
+	//var pathSplit2 = path.split(idAutogenerado + "/");
+	//var id_usuario_instagram = pathSplit[1];
+	
+	/////////////////////////
+	/////////////////////////
+	
+	var respuesta = generarRespuestaATokenYNombreUsuarioYIdUsuario(db, idAutogenerado);
+	response.setHeader("Content-Type", "application/json");
+	response.send(JSON.stringify(respuesta));
+	/*
+	//response.send(request.body.id_dispositivo);    //podriaser request.body.nombreUsuario ..... request.body.correoElectronico .....
+	//response.send(request.body.id_usuario_instagram);
+	response.send({
+		id_dispositivo: id_dispositivo,
+		id_usuario_instagram: id_usuario_instagram
+	});*/
+});
+//////////////////////////////////////////////////////////////////////////////////
+
+function generarRespuestaATokenYNombreUsuarioYIdUsuario(db, idAutogenerado ){
+	var respuesta = {};
+	var usuario = "";
+	var ref = db.ref("registrar-usuario");
+	ref.on("child_added", function(snapshot, prevChildKey){      //para obtener el ultimo registro insertado
+		usuario = snapshot.val();         
+		respuesta = {
+			id_regristro: idAutogenerado,                              //-KZXOT_4qbMWRWoNXWbK
+			id_dispositivo: usuario.id_dispositivo,                          //token
+			nombre_usuario_instagram: usuario.nombre_usuario_instagram,              //perritopaco
+			id_usuario_instagram: usuario.id_usuario_instagram               //434255667
+		};
+	})
+	return respuesta;
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////////////////
+//POST      (hay q enviar el id de la foto raiteada (id_foto_instagram), id usuario (id_usuario_instagram) y un token (id_dispositivo), y se guare a la DB)
+//https://damp-wildwood-91392.herokuapp.com/registrar-like
+//id_foto_instagram
+//id_usuario_instagram
+//id_dispositivo
+app.post("/registrar-like", function(request, response){
+//en request (solicitud) estare obteniendo los parametros que vengan en la url atraves del metodo indicado	
+	var id_foto_instagram    = request.body.id_foto_instagram;
+	var id_usuario_instagram = request.body.id_usuario_instagram;
+	var id_dispositivo       = request.body.id_dispositivo;
+	
+	
+	
+	
+	var db = firebase.database();   //traemos la Db a la variable db
+	var tokenDevices = db.ref("registrar-like").push();  //obtenemod la referencia de la base de datos. se empiezan a crear las claves apartir de "registrar-like" .el push es para que vaya creando nuevos datos (id ) y no sobreescribiendo
+	tokenDevices.set({                               //definimos la estructura de la data que queremos insertar en este path
+		id_foto_instagram: id_foto_instagram,
+		id_usuario_instagram: id_usuario_instagram,
+		id_dispositivo: id_dispositivo
+	});
+	
+	var path = tokenDevices.toString(); //te guarda la direccion del servidor, concatenando el identificador que le ha puesto al registro(https://mascotas-589b9.firebaseio.com/registrar-like/-KZXOT_4qbMWRWoNXWbK)
+	var pathSplit = path.split("registrar-like/");
+	var idAutogenerado = pathSplit[1];
+	
+	////
+	////
+	////
+	////
+	
+	var respuesta = generarRespuestaAIdFotoYIdUsuarioYToken(db, idAutogenerado);
+	response.setHeader("Content-Type", "application/json");
+	response.send(JSON.stringify(respuesta));
+	
+	var mensaje =  "A perritopaco le gusta una foto tuya, con el id " + id_foto_instagram;
+	enviarNotificacion(id_dispositivo, mensaje);
+	
+	/*
+	//response.send(request.body.id_dispositivo);    //podriaser request.body.nombreUsuario ..... request.body.correoElectronico .....
+	//response.send(request.body.id_usuario_instagram);
+	response.send({
+		id_dispositivo: id_dispositivo,
+		id_usuario_instagram: id_usuario_instagram
+	});*/
+});
+//////////////////////////////////////////////////////////////////////////////////
+
+function enviarNotificacion(id_dispositivo, mensaje){
+	var serverKey = 'AIzaSyAFzXgdm9yXeixpQrWELrPUMtRwMcA39KU';   //llave del servidor, se obtiene en firebase, settings, configuracion del proyecto, mensajeria en la nube, Clave de servidor heredada     
+    var fcm = new FCM(serverKey);              
+	                                            
+	var message = {
+		to: id_dispositivo, 
+		collapse_key: '', 
+		data: {},
+		notification: {
+			title: 'Petagram imforma: ',
+			body: mensaje,
+			icon: "notificaciones", //es el drawable de la campanita
+			sound: "default",
+			color: "#FF4081"   //obtenido de matterial pallette (es la web de coger los colores con un codigo hexadecimal)
+		}
+	};
+
+	fcm.send(message, function(err, response){
+		if (err) {
+			console.log("Something has gone wrong!");
+		} else {
+			console.log("Successfully sent with response: ", response);
+		}
+	});
+}
+
+
+function generarRespuestaAIdFotoYIdUsuarioYToken(db, idAutogenerado ){
+	var respuesta = {};
+	var usuario = "";
+	var ref = db.ref("registrar-like");
+	ref.on("child_added", function(snapshot, prevChildKey){      //para obtener el ultimo registro insertado
+		usuario = snapshot.val();         
+		respuesta = {
+			//id_regristro: idAutogenerado,                              //-KZXOT_4qbMWRWoNXWbK
+			id_foto_instagram: usuario.id_foto_instagram,               //1398657201995876099           
+			id_usuario_instagram: usuario.id_usuario_instagram,              //434255667
+			id_dispositivo: usuario.id_dispositivo                      //token
+		};
+	})
+	return respuesta;
+}
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//GET
+//https://damp-wildwood-91392.herokuapp.com/obtener-token-usuario-dado
+//id_usuario_instagram
+app.get("/obtener-token-usuario-dado/:id_usuario_instagram", function(request, response){    
+	
+	var id_usuario_instagram = request.params.id_usuario_instagram;           //con params recibe los datos que vienen en una url
+	
+	
+	var db = firebase.database();   //traemos la Db a la variable db
+	
+	
+	var ref = db.ref("registrar-usuario");  
+	var usuario = "";
+	var respuesta = {};
+	 
+	ref.on("child_added", function(snapshot, prevChildKey){
+		
+		console.log(snapshot.val());
+		usuario = snapshot.val();
+		
+		
+			if (usuario.id_usuario_instagram == id_usuario_instagram) {
+				respuesta = {
+				id_dispositivo: usuario.id_dispositivo
+				};
+				//response.send(JSON.stringify(respuesta));
+			} 
+			
+		
+	});
+	response.send(JSON.stringify(respuesta));
+	
+	
+});
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
+
+

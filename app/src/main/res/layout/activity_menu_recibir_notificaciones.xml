@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities_menus.MenuRecibirNotificacionesActivity">
+
+
+    <include
+        android:id="@+id/myActionBar"
+        layout="@layout/actionbar2">
+    </include>
+
+    <TextView
+        android:id="@+id/tvTituloRecibirNotificaciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recibir notificaciones"
+        android:textSize="30dp"
+        android:textColor="@color/colorAccent"
+        android:layout_below="@id/myActionBar"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/top"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Nombre del usuario:"
+            android:textSize="@dimen/letra_desarrollador"/>
+
+        <TextView
+            android:id="@+id/tvNombreUsuarioInstagram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginLeft="10dp"
+            android:text="*****"
+            android:textSize="@dimen/letra_desarrollador"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/top"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="ID dispositivo:"
+            android:textSize="@dimen/letra_desarrollador"/>
+
+        <TextView
+            android:id="@+id/tvIdDispositivo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginLeft="10dp"
+            android:text="*****"
+            android:textSize="@dimen/letra_desarrollador"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/top"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="ID usuario en instagram:"
+            android:textSize="@dimen/letra_desarrollador"/>
+
+        <TextView
+            android:id="@+id/tvIdUsuarioInstagram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginLeft="10dp"
+            android:text="*****"
+            android:textSize="@dimen/letra_desarrollador"/>
+
+    </LinearLayout>
+
+    <!--
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/top"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="ID registro:"
+            android:textSize="@dimen/letra_desarrollador"/>
+
+        <TextView
+            android:id="@+id/tvIdRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginLeft="10dp"
+            android:text="*****"
+            android:textSize="@dimen/letra_desarrollador"/>
+
+    </LinearLayout>
+
+    -->
+
+</LinearLayout>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".activities_menus.MenuContactoActivity">
+
+    <include
+        android:id="@+id/myActionBar"
+        layout="@layout/actionbar2"
+        >
+    </include>
+
+
+    <TextView
+        android:id="@+id/tvFormulario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FORMULARIO"
+        android:textSize="40dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@id/myActionBar"/>
+
+    <LinearLayout
+        android:id="@+id/llNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFormulario"
+        android:layout_marginTop="@dimen/top"
+        android:layout_marginLeft="@dimen/left">
+
+        <ImageView
+            android:id="@+id/imgUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/usuario"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/etNombreCompleto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nombre_completo"
+            android:textColorHint="@color/colorAccent"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@color/escritura_Hint"
+            android:layout_gravity="center_horizontal"
+            android:maxLength="35" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/top"
+        android:layout_marginLeft="@dimen/left"
+        android:layout_below="@+id/llNombre">
+
+        <ImageView
+            android:id="@+id/imgEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mail"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:textColorHint="@color/colorAccent"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@color/escritura_Hint"
+            android:layout_gravity="center_horizontal"
+            android:inputType="textEmailAddress"
+            android:maxLength="55" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llMensaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llEmail"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/top"
+        android:layout_marginLeft="@dimen/left">
+
+        <ImageView
+            android:id="@+id/imgMensaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mensaje"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/etMensaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mensaje"
+            android:textColorHint="@color/colorAccent"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@color/escritura_Hint"
+            android:layout_gravity="center_horizontal"
+            android:maxLength="135" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btEnviarComentarios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llMensaje"
+        android:layout_centerHorizontal="true"
+        android:text="@string/button_enviar_comentarios"
+        android:layout_marginTop="@dimen/botonTop"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorAccent"/>
+
+
+
+
+
+
+
+</RelativeLayout>

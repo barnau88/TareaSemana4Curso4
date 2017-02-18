@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.borjarnau.mismascotas">
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Favoritas_Activity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".activities_menus.MenuContactoActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".activities_menus.MenuAcercaDeActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".activities_menus.MenuConfigurarCuenta"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".activities_menus.MenuRecibirNotificacionesActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".DetalleMascota"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".TimelinePerritopaco"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".PerfilUsuarioReiteado"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+
+        <service
+            android:name=".NotificationService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+
+        <service
+            android:name=".NotificacionIDTokenService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <!--
+                        <receiver android:name=".AccionesNotificacion">
+                            <intent-filter>
+                                <action android:name="VER_MI_PERFIL"/>
+                                <action android:name="FOLLOW_UNFOLLOW"/>
+                                <action android:name="VER_USUARIO"/>
+                            </intent-filter>
+                        </receiver>
+
+
+                               <receiver android:name=".MiPerfil">
+                                   <intent-filter>
+                                       <action android:name="VER_MI_PERFIL"/>
+                                   </intent-filter>
+                               </receiver>
+
+-->
+                               <receiver android:name=".Follow">
+                                   <intent-filter>
+                                       <action android:name="FOLLOW_UNFOLLOW"/>
+                                   </intent-filter>
+                               </receiver>
+
+<!--
+                               <receiver android:name=".PerfilDeUnUsuario">
+                                   <intent-filter>
+                                       <action android:name="VER_USUARIO"/>
+                                   </intent-filter>
+                               </receiver>
+-->
+            </application>
+
+        </manifest>

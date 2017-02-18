@@ -1,0 +1,42 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.PerfilFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgFotoMiMascota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/perro8"
+            android:layout_marginBottom="@dimen/margen_abajo"
+            android:layout_marginTop="@dimen/top"/>
+        <TextView
+            android:id="@+id/tvNombreMiMascota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre_mi_mascota"
+            android:textSize="@dimen/nombreMascota"
+            android:textColor="@color/colorAccent"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/margen_abajo"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvMascotasGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+
+
+
+</FrameLayout>

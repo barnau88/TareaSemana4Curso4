@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cvMascota"
+    android:layout_width="wrap_content"
+    android:layout_height="180dp"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    card_view:cardCornerRadius="@dimen/corner_radius_cardview"
+    >
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="6dp">
+
+        <ImageView
+            android:id="@+id/imgFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="130dp"
+            android:src="@drawable/perro1"
+            android:padding="6dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tvLikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/plikes"
+                android:textSize="@dimen/nombreMascota"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/ivHuesoRojo"
+                android:layout_toStartOf="@+id/ivHuesoRojo"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/margen_lados"
+                android:textColor="@color/colorAccent"/>
+
+
+
+            <ImageView
+                android:id="@+id/ivBone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/hueso2"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margen_lados"/>
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cvMiMascota"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    card_view:cardCornerRadius="@dimen/corner_radius_cardview"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/perro1"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+
+            >
+
+
+            <ImageView
+                android:id="@+id/ivHuesoRojo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/hueso2"
+                android:layout_marginRight="@dimen/margen_lados"
+                android:gravity="center_horizontal"
+                android:layout_gravity="bottom"/>
+
+            <TextView
+                android:id="@+id/tvNumMeGustas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/plikes"
+                android:textSize="@dimen/nombreMascota"
+                android:textColor="@color/colorAccent"
+                android:gravity="center_horizontal"
+                android:layout_gravity="bottom"/>
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

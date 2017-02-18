@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--      ESTOS TRES BOTONES ERAN PRUEBAS, PERO NO LOS BORRO
+              PORQUE TENGO SUS RESPECTIVOS METODOS EN EL MAIN
+
+    <Button
+        android:id="@+id/btnLanzarNotificacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lanzar_notificacion"
+        android:layout_gravity="center_horizontal"
+        android:onClick="lanzarNotificacion"/>
+
+    <Button
+        android:id="@+id/btnRecibirNotificaciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/recibir_notificaciones"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:onClick="recibirNotificaciones"/>
+
+    <Button
+        android:id="@+id/btnEnviarToken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enviar_token_usuario_intagram"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:onClick="enviarTokenYUsuarioInstagram"/>
+
+
+
+
+    <Button
+        android:id="@+id/btnDarID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="dame id del dispositivo"
+        android:layout_gravity="center_horizontal"
+        android:onClick="darId"/>
+
+   -->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMascotas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/activity_horizontal_margin"/>
+    <!--  android:layout_below="@+id/miActionBar"-->
+
+</LinearLayout>
